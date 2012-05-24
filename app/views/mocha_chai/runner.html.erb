@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <title>Mocha/Chai Spec Runner</title>
+  <%= stylesheet_link_tag "mocha" %>
+  <%= javascript_include_tag "jquery", "mocha" %>
+  <%= javascript_tag "mocha.setup('bdd')" %>
+  <%= javascript_include_tag "chai" %>
+  <%= javascript_include_tag "chai-globals" unless Rails.configuration.sandbox_assets.options[:skip_chai_globals] %>
+
+<% @stylesheets.each do |css| -%>
+  <%= stylesheet_link_tag css %>
+<% end -%>
+
+<% @tests.each do |test| -%>
+  <%= javascript_include_tag test %>
+<% end -%>
+
+  <%= javascript_tag "onload = function(){ mocha.run() }" %>
+</head>
+<body>
+  <div id="mocha"></div>
+</body>
+</html>
